@@ -17,7 +17,8 @@
   },
   "keywords": [
     "vue",
-    "mixin"
+    "el-dialog",
+    "draggable"
   ],
   "dependencies": {},
   "devDependencies": {
