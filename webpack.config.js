@@ -1,33 +1,33 @@
-const path = require("path");
-const webpack = require("webpack");
-var CompressionPlugin = require("compression-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+var CompressionPlugin = require('compression-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    library: "VueElDialogDrag",
-    libraryTarget: "commonjs2",
-    path: path.resolve(__dirname, "dist"),
-    filename: "index.js",
+    library: 'VueElDialogDrag',
+    libraryTarget: 'commonjs2',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js'
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader!",
+        loader: 'style-loader!css-loader!'
       },
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["env"],
-          },
-        },
-      },
-    ],
+            presets: ['env']
+          }
+        }
+      }
+    ]
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
@@ -37,20 +37,20 @@ module.exports = {
         pure_getters: true,
         unsafe: true,
         unsafe_comps: true,
-        screw_ie8: true,
+        screw_ie8: true
       },
       output: {
-        comments: false,
+        comments: false
       },
-      exclude: [/\.min\.js$/gi], // skip pre-minified libs
+      exclude: [/\.min\.js$/gi] // skip pre-minified libs
     }),
     new CompressionPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
-      minRatio: 0,
+      minRatio: 0
     }),
-    new CleanWebpackPlugin(),
-  ],
+    new CleanWebpackPlugin()
+  ]
 };
